@@ -15,6 +15,7 @@ jobs:
           submodules: true
 
       - name: Determine the next release version
+        id: getVersion
         uses: cycjimmy/semantic-release-action@v3
         with:
           dry_run: true
@@ -26,7 +27,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Nothing to release
-        if: ${{ env.NEXT_RELEASE_VERSION == '' }}
+        if: ${{ steps.getVersion.outputs.new_release_version == '' }}
         uses: actions/github-script@v6
         with:
           script: |
@@ -42,7 +43,7 @@ jobs:
 
       - name: Prepare for the Release
         env:
-          REACT_APP_VERSION: ${{ env.NEXT_RELEASE_VERSION }}
+          REACT_APP_VERSION: ${{ steps.getVersion.outputs.new_release_version }}
         run: |
           npm run lint
           npm run test
