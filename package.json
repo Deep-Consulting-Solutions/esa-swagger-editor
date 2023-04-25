@@ -4,7 +4,7 @@
   "version": "4.9.1",
   "main": "dist/swagger-editor.js",
   "module": "dist/swagger-editor-es-bundle.js",
-  "repository": "git@github.com:swagger-api/swagger-editor.git",
+  "repository": "git@github.com:Deep-Consulting-Solutions/esa-swagger-editor.git",
   "license": "Apache-2.0",
   "contributors": [
     "(in alphabetical order)",
