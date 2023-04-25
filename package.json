@@ -1,5 +1,5 @@
 {
-  "name": "swagger-editor",
+  "name": "@deep-consulting-solutions/swagger-editor",
   "description": "Swagger Editor",
   "version": "4.9.1",
   "main": "dist/swagger-editor.js",
@@ -55,7 +55,9 @@
     "security-audit:prod": "npm-audit-ci-wrapper -p -t low",
     "security-audit:all": "npm-audit-ci-wrapper -t moderate",
     "start": "npm-run-all --parallel build:serve open-static",
-    "watch": "webpack --config  webpack/core.babel.js --watch --progress"
+    "watch": "webpack --config  webpack/core.babel.js --watch --progress",
+    "watch:bundle": "webpack --config webpack/es-bundle.babel.js --watch --progress",
+    "watch:dev": "npm-run-all --parallel watch watch:bundle"
   },
   "dependencies": {
     "ajv": "^6.12.3",
@@ -174,5 +176,8 @@
   },
   "config": {
     "deps_check_dir": ".deps_check"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }
