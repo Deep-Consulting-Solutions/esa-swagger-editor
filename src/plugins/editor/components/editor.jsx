@@ -25,7 +25,7 @@ const NOOP = Function.prototype // Apparently the best way to no-op
 export default function makeEditor({ editorPluginsToRun }) {
 
   class Editor extends React.Component {
-
+//
     constructor(props, context) {
       super(props, context)
 
