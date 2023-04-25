@@ -250,6 +250,13 @@ export default function makeEditor({ editorPluginsToRun }) {
       var doc = win.document.documentElement
       doc.setAttribute("data-useragent", win.navigator.userAgent)
       this.syncOptionsFromState(this.props.editorOptions)
+
+      window.addEventListener("message", (ev) => {
+        if (ev.data.name === "editor_change" && ev.data.body) {
+          const {body} = ev.data
+          this.editor.session.setValue(body)
+        }
+      })
     }
 
     componentWillUnmount() {
