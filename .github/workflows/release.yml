@@ -13,7 +13,6 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
           submodules: true
-          ref: next
 
       - name: Determine the next release version
         uses: cycjimmy/semantic-release-action@v3
