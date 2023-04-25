@@ -45,12 +45,7 @@ jobs:
         env:
           REACT_APP_VERSION: ${{ steps.getVersion.outputs.new_release_version }}
         run: |
-          npm run lint
-          npm run test
-          npm run build:app
-          npm run cy:ci
-          npm run build:bundle:esm
-          npm run build:bundle:umd
+          npm run build
 
       - name: Semantic Release
         id: semantic
