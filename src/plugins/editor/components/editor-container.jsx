@@ -12,6 +12,7 @@ export default class EditorContainer extends React.Component {
     this.props.onChange(value)
   }
 
+  //
   render() {
     let { specSelectors, getComponent, errSelectors, fn, editorSelectors, configsSelectors } = this.props
 
