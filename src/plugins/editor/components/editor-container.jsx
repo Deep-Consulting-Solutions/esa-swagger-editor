@@ -8,7 +8,7 @@ export default class EditorContainer extends React.Component {
     window.parent.postMessage({
       name: "editor_onChange",
       body: value,
-    }, window.origin)
+    }, "*")
     this.props.onChange(value)
   }
 
