@@ -5,13 +5,14 @@ export default class EditorContainer extends React.Component {
 
   // This is already debounced by editor.jsx
   onChange = (value) => {
-    window.postMessage({
+    window.parent.postMessage({
       name: "editor_onChange",
       body: value,
-    }, window.origin)
+    }, "*")
     this.props.onChange(value)
   }
 
+  //
   render() {
     let { specSelectors, getComponent, errSelectors, fn, editorSelectors, configsSelectors } = this.props
 
