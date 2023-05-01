@@ -240,6 +240,13 @@ export default function makeEditor({ editorPluginsToRun }) {
       editor.setReadOnly(readOnly)
     }
 
+    messageHandler = (ev) => {
+      if (ev.data.name === "editor_change" && ev.data.body) {
+        const { body } = ev.data
+        this.editor.session.setValue(body)
+      }
+    }
+
     componentDidMount() {
       // eslint-disable-next-line react/no-did-mount-set-state
 
@@ -251,16 +258,12 @@ export default function makeEditor({ editorPluginsToRun }) {
       doc.setAttribute("data-useragent", win.navigator.userAgent)
       this.syncOptionsFromState(this.props.editorOptions)
 
-      window.addEventListener("message", (ev) => {
-        if (ev.data.name === "editor_change" && ev.data.body) {
-          const {body} = ev.data
-          this.editor.session.setValue(body)
-        }
-      })
+      window.addEventListener("message", this.messageHandler)
     }
 
     componentWillUnmount() {
       win.document.removeEventListener("click", this.onClick)
+      window.removeEventListener("message", this.messageHandler)
     }
 
     // eslint-disable-next-line react/no-deprecated, camelcase
