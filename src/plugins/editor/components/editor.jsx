@@ -109,6 +109,10 @@ export default function makeEditor({ editorPluginsToRun }) {
         props.editorActions.onLoad({...props, langTools, editor})
 
       this.updateMarkerAnnotations(this.props)
+
+      window.parent.postMessage({
+        name: "editor_loaded"
+      }, "*")
     }
 
     onResize = () => {
